@@ -39,10 +39,10 @@ class  plgSystemMemberHome extends JPlugin
 	public function onAfterRoute()
 	{
 		$app			= JFactory::getApplication();
-		$task			= JRequest::getVar('task', 'none');
+		$task			= $app->get('task', 'none');
 		$user 			= JFactory::getUser();
 
-		if ($app->isAdmin() || $task=='user.logout' || $user->guest){
+		if ($app->isClient('administrator') || $task=='user.logout' || $user->guest){
 			return false;
 		}
 		
